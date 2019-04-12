@@ -53,14 +53,14 @@ class Data_Retriever
   end
 
   def gather_last_transactions
-  	transactions = page.css("#step1 > td:nth-child(5) > div[class='cellText ng-scope'] > span").first.text 
-  	@tr_index = 1
-	  	while  @tr_index <= transactions.count do
-	  	transaction_date = page.css('#step1 > td:nth-child(2) > div[style="width: 6.8rem"] > span').(@tr_index).first.text
-  t	ransaction_description = page.css('#step1 > td.ng-scope.icon-two-line-col > div > div > p.ng-scope').(@tr_index).first.text + " " + page.css('#step1 > td.ng-scope.icon-two-line-col > div > div    > p:nth-child(2)').first.text
-  transaction_amount = page.css("#step1 > td[style='width: 11.2rem;']:nth-child(6) > div > span").(@tr_index).first.text
-  transaction_account_name = page.css("#step1 > td:nth-child(5) > div[class='cellText ng-scope'] > span").(@tr_index).first.text
-  tr = Transactions.new(transaction_date, transaction_description, transaction_amount, transaction_account_name)
+    transactions = page.css("#step1 > td:nth-child(5) > div[class='cellText ng-scope'] > span").first.text 
+    @tr_index = 1
+    while  @tr_index <= transactions.count do
+   transaction_date = page.css('#step1 > td:nth-child(2) > div[style="width: 6.8rem"] > span').(@tr_index).first.text
+   transaction_description = page.css('#step1 > td.ng-scope.icon-two-line-col > div > div > p.ng-scope').(@tr_index).first.text + " " + page.css('#step1 > td.ng-scope.icon-two-line-col > div > div    > p:nth-child(2)').first.text
+   transaction_amount = page.css("#step1 > td[style='width: 11.2rem;']:nth-child(6) > div > span").(@tr_index).first.text
+   transaction_account_name = page.css("#step1 > td:nth-child(5) > div[class='cellText ng-scope'] > span").(@tr_index).first.text
+   tr = Transactions.new(transaction_date, transaction_description, transaction_amount, transaction_account_name)
   @transactions_records << tr
   @tr_index += 1
 end
