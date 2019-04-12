@@ -1,4 +1,3 @@
-
 class Accounts
   attr_accessor :name, :currency, :balance, :nature, :transactions
   def initialize(name, currency, balance, nature)

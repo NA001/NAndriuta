@@ -1,9 +1,9 @@
 require_relative 'Data_Retriever'
+BASE_URL = "https://my.fibank.bg/oauth2-server/login?client_id=E_BANK"
 
 class Runner
-
     parser = Data_Retriever.new
-    parser.browse("https://my.fibank.bg/oauth2-server/login?client_id=E_BANK")
+    parser.browse(BASE_URL)
     parser.login
     parser.parsing
     parser.gather_credit_info
