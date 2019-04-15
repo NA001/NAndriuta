@@ -3,7 +3,7 @@ require 'rubygems'
 require 'open-uri'
 require 'watir'
 require 'pry'
-require 'json'
+require 'json' 
 require_relative "Account.rb"
 require_relative "Transaction.rb"
 
@@ -34,22 +34,22 @@ class Data_Retriever
 
   def gather_credit_info
     @page.css("#dashboardAccounts tr[id]").each do |row|
-    account_name = row.css("span[bo-bind='row.iban']").text
-    account_currency = row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f 
-    account_available_balance = row.css("span[bo-bind='row.ccy']").text
-    credit_account = Account.new(account_name , account_available_balance , account_currency , "Credit")
+      account_name =              row.css("span[bo-bind='row.iban']").text
+      account_currency =          row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f 
+      account_available_balance = row.css("span[bo-bind='row.ccy']").text
+      credit_account =            Account.new(account_name , account_available_balance , account_currency , "Credit")
     @available_account << credit_account
     end
   end
 
   def gather_debit_info
     @page.css("#dashStep2 tr[id]").each do |row|
-    account_name = row.css("span[bo-bind='row.iban']").text
-    account_currency = row.css("span[bo-bind='row.ccy']").text
-    account_available_balance = row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f
-    debit_account = Account.new(account_name , account_currency , account_available_balance ,"Debit" )
+      account_name =              row.css("span[bo-bind='row.iban']").text
+      account_currency =          row.css("span[bo-bind='row.ccy']").text
+      account_available_balance = row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f
+      debit_account =             Account.new(account_name , account_currency , account_available_balance ,"Debit" ) 
     @available_account << debit_account
-   end
+    end
   end
 
   def gather_last_transactions
@@ -78,6 +78,7 @@ class Data_Retriever
       @transaction_records.each do |transaction|
         if transaction.account_name == available_account.name
           available_account.transactions << transaction
+        end
       end
     end
   end
@@ -85,7 +86,7 @@ class Data_Retriever
   def transform_data_to_hash
       @available_account.each do |account|
         account_hash = {
-          name: 	    account.name,
+          name: 	      account.name,
           balance:      account.balance,
           currency:     account.currency,
           description:  account.nature,
