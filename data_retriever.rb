@@ -42,10 +42,11 @@ class Data_Retriever
       credit_account = Account.new(
       account_name ,
       account_available_balance ,
-      account_currency, "Credit"
+      account_currency, 
+      "Credit"
       )
       
-    @available_account << credit_account
+      @available_account << credit_account
     end
   end
 
@@ -62,7 +63,7 @@ class Data_Retriever
       "Debit" 
       )
        
-    @available_account << debit_account
+      @available_account << debit_account
     end
   end
 
