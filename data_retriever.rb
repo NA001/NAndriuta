@@ -35,8 +35,8 @@ class Data_Retriever
 
   def gather_credit_info
     @page.css("#dashboardAccounts tr[id]").each do |row|
-      account_name =              row.css("span[bo-bind='row.iban']").text
-      account_currency =          row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f 
+      account_name              = row.css("span[bo-bind='row.iban']").text
+      account_currency          = row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f 
       account_available_balance = row.css("span[bo-bind='row.ccy']").text
       
       credit_account = Account.new(
@@ -52,8 +52,8 @@ class Data_Retriever
 
   def gather_debit_info
     @page.css("#dashStep2 tr[id]").each do |row|
-      account_name =              row.css("span[bo-bind='row.iban']").text
-      account_currency =          row.css("span[bo-bind='row.ccy']").text
+      account_name              = row.css("span[bo-bind='row.iban']").text
+      account_currency          = row.css("span[bo-bind='row.ccy']").text
       account_available_balance = row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f
       
       debit_account = Account.new(
