@@ -3,7 +3,8 @@ require 'rubygems'
 require 'open-uri'
 require 'watir'
 require 'pry'
-require 'json' 
+require 'json'
+require 
 require_relative "Account.rb"
 require_relative "Transaction.rb"
 
@@ -37,7 +38,13 @@ class Data_Retriever
       account_name =              row.css("span[bo-bind='row.iban']").text
       account_currency =          row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f 
       account_available_balance = row.css("span[bo-bind='row.ccy']").text
-      credit_account =            Account.new(account_name , account_available_balance , account_currency , "Credit")
+      
+      credit_account = Account.new(
+      account_name ,
+      account_available_balance ,
+      account_currency, "Credit"
+      )
+      
     @available_account << credit_account
     end
   end
@@ -47,7 +54,14 @@ class Data_Retriever
       account_name =              row.css("span[bo-bind='row.iban']").text
       account_currency =          row.css("span[bo-bind='row.ccy']").text
       account_available_balance = row.css("span[bo-bind='row.acyAvlBal | sgCurrency']").text.to_f
-      debit_account =             Account.new(account_name , account_currency , account_available_balance ,"Debit" ) 
+      
+      debit_account = Account.new(
+      account_name ,
+      account_currency ,
+      account_available_balance ,
+      "Debit" 
+      )
+       
     @available_account << debit_account
     end
   end
