@@ -116,9 +116,9 @@ class Data_Retriever
            description:        transaction.description
         }
 
-          account_hash[:transactions] << transaction_hash
+        account_hash[:transactions] << transaction_hash
         end
-       @json_hash[:accounts] << account_hash
+      @json_hash[:accounts] << account_hash
       end
   end
    
